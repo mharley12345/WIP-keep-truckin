@@ -10,7 +10,7 @@ var pusher = new Pusher({
   appId: '814220',
   key: 'd1f050d4176bcfe0f8d6',
   secret: 'fa3a99e853aef1cbb2c3',
-  cluster: 'us3',
+  cluster: 'mt1',
   encrypted: true
 });
 
@@ -28,9 +28,9 @@ app.use((req, res, next) => {
 app.post('/pusher/auth', (req, res) => {
        let socketId = req.body.socket_id;
        let channel = req.body.channel_name;
-       random_string = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+       let random_string = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
        let presenceData = {
-           user_id: random_string,
+           user_id:random_string,
            user_info: {
                username: '@' + random_string,
            }
@@ -47,7 +47,11 @@ app.post('/pusher/auth', (req, res) => {
        })
        res.json({ 'status': 200 });
    });
+   pusher.trigger('my-channel', 'my-event', {
+    "message": "hello world"
+  });
 
    let port = 3128;
-   app.listen(port);
+   app.listen(port,'listing on');
+   
    console.log('listening');
