@@ -3,7 +3,7 @@ import SignUp from './Components/SignUp'
 import Nav from './Components/Nav'
 import Login from './Components/Login'
 import { Route } from "react-router-dom";
-import Home from "./Pages/Home"
+
 import './App.css';
 
    class App extends Component { 
@@ -18,7 +18,7 @@ import './App.css';
   return (
     <div className="App">
       <Nav/>
-  <Route exact path="/" component={Home} render={Home}/>
+ <Route exact path="/" />
  <Route exact path="/signup" component={SignUp} />
  <Route exact path="/login" component={Login} />
     </div>
